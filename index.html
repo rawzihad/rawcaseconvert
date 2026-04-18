@@ -1,0 +1,218 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body,.app{font-family:'Poppins',sans-serif;}
+.app{background:#0d0d0d;min-height:100vh;display:flex;flex-direction:column;}
+
+/* HEADER */
+.header{background:#111;border-bottom:1px solid #222;padding:0 2rem;}
+.header-inner{max-width:700px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:20px;font-weight:800;color:#FFD600;letter-spacing:-0.5px;line-height:1;}
+.logo span{color:#fff;}
+.nav{display:flex;gap:6px;}
+.nav-link{font-size:12px;font-weight:600;color:#555;padding:6px 12px;border-radius:7px;cursor:pointer;border:1px solid transparent;transition:all .15s;text-decoration:none;}
+.nav-link:hover{color:#FFD600;border-color:#2a2a2a;background:#1a1a1a;}
+.nav-link.active{color:#0d0d0d;background:#FFD600;border-color:#FFD600;}
+
+/* HERO BAND */
+.hero{background:#FFD600;padding:.9rem 2rem;text-align:center;}
+.hero-inner{max-width:700px;margin:0 auto;}
+.hero h1{font-size:13px;font-weight:700;color:#0d0d0d;letter-spacing:.05em;text-transform:uppercase;}
+.hero p{font-size:12px;color:#6b5a00;margin-top:2px;font-weight:400;}
+
+/* MAIN */
+.main{flex:1;padding:2rem 1.25rem;}
+.input-card{background:#1a1a1a;border-radius:16px;border:1px solid #2a2a2a;padding:1.5rem;max-width:700px;margin:0 auto 1.25rem;}
+.input-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#555;margin-bottom:10px;}
+textarea{width:100%;min-height:108px;resize:vertical;background:#111;border:1px solid #2a2a2a;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:15px;color:#fff;outline:none;line-height:1.6;transition:border-color .15s;}
+textarea:focus{border-color:#FFD600;}
+textarea::placeholder{color:#444;}
+.row{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap;}
+.btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;padding:6px 16px;border-radius:8px;border:1px solid #2a2a2a;background:transparent;color:#888;cursor:pointer;transition:all .15s;}
+.btn:hover{background:#222;color:#FFD600;border-color:#FFD600;}
+.stats{display:flex;gap:18px;margin-left:auto;}
+.stat{font-size:12px;color:#555;}
+.stat strong{color:#FFD600;font-weight:700;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px;max-width:700px;margin:0 auto;}
+.case-card{background:#1a1a1a;border-radius:14px;border:1px solid #2a2a2a;padding:1.1rem 1.2rem 1rem;cursor:pointer;transition:all .15s;position:relative;overflow:hidden;}
+.case-card:hover{border-color:#FFD600;background:#1f1f1f;}
+.case-card:active{transform:scale(.98);}
+.case-card.copied{border-color:#FFD600;background:#1f1a00;}
+.tag{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:7px;background:#FFD600;color:#0d0d0d;font-size:10px;font-weight:800;margin-bottom:10px;}
+.case-card.copied .tag{background:#fff;}
+.clabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#555;margin-bottom:6px;}
+.preview{font-size:14px;color:#ccc;line-height:1.5;word-break:break-word;min-height:21px;transition:color .15s;}
+.case-card:hover .preview{color:#fff;}
+.case-card.copied .preview{color:#FFD600;}
+.copy-hint{position:absolute;top:12px;right:12px;font-size:10px;color:#444;display:flex;align-items:center;gap:3px;font-weight:500;}
+.copied-label{position:absolute;top:12px;right:12px;font-size:10px;font-weight:700;color:#FFD600;display:none;}
+.case-card.copied .copied-label{display:block;}
+.case-card.copied .copy-hint{display:none;}
+.accent-bar{position:absolute;bottom:0;left:0;width:0;height:2px;background:#FFD600;transition:width .2s;}
+.case-card:hover .accent-bar,.case-card.copied .accent-bar{width:100%;}
+
+/* FOOTER */
+.footer{background:#111;border-top:1px solid #222;padding:0 2rem;}
+.footer-inner{max-width:700px;margin:0 auto;padding:1.2rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-logo{font-size:14px;font-weight:800;color:#FFD600;}
+.footer-logo span{color:#555;}
+.footer-links{display:flex;gap:16px;}
+.footer-link{font-size:12px;color:#444;cursor:pointer;font-weight:500;transition:color .15s;}
+.footer-link:hover{color:#FFD600;}
+.footer-copy{font-size:11px;color:#333;width:100%;text-align:center;padding-top:.6rem;border-top:1px solid #1e1e1e;margin-top:.2rem;}
+.footer-badges{display:flex;gap:6px;}
+.badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:5px;background:#1e1e1e;color:#555;border:1px solid #2a2a2a;}
+</style>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">raw<span>case</span>convert</div>
+      <nav class="nav">
+        <span class="nav-link active">Converter</span>
+        <span class="nav-link" onclick="sendPrompt('What other text tools can rawcaseconvert add?')">Tools ↗</span>
+        <span class="nav-link" onclick="sendPrompt('How do I use rawcaseconvert?')">Help ↗</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO BAND -->
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Free online text case converter</h1>
+      <p>Sentence · Lower · Upper · Capitalized · Alternating · Title · Inverse — click any card to copy</p>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="input-card">
+      <div class="input-label">Your Text</div>
+      <textarea id="txt" placeholder="Type or paste your text here…"></textarea>
+      <div class="row">
+        <button class="btn" onclick="document.getElementById('txt').value='';update('')">Clear</button>
+        <button class="btn" onclick="navigator.clipboard.readText().then(t=>{document.getElementById('txt').value=t;update(t)}).catch(()=>{})">Paste</button>
+        <div class="stats" id="stats" style="display:none">
+          <div class="stat"><strong id="sc">0</strong> chars</div>
+          <div class="stat"><strong id="sw">0</strong> words</div>
+          <div class="stat"><strong id="ss">0</strong> lines</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="case-card" id="c-sc" onclick="copy('sc')">
+        <div class="tag">Sc</div><div class="clabel">Sentence case</div>
+        <div class="preview" id="p-sc">Your text will appear here</div>
+        <div class="copy-hint"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="5" width="8" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h7"/></svg>copy</div>
+        <div class="copied-label">Copied!</div><div class="accent-bar"></div>
+      </div>
+      <div class="case-card" id="c-lc" onclick="copy('lc')">
+        <div class="tag">lc</div><div class="clabel">lower case</div>
+        <div class="preview" id="p-lc">your text will appear here</div>
+        <div class="copy-hint"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="5" width="8" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h7"/></svg>copy</div>
+        <div class="copied-label">Copied!</div><div class="accent-bar"></div>
+      </div>
+      <div class="case-card" id="c-uc" onclick="copy('uc')">
+        <div class="tag">UC</div><div class="clabel">UPPER CASE</div>
+        <div class="preview" id="p-uc">YOUR TEXT WILL APPEAR HERE</div>
+        <div class="copy-hint"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="5" width="8" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h7"/></svg>copy</div>
+        <div class="copied-label">Copied!</div><div class="accent-bar"></div>
+      </div>
+      <div class="case-card" id="c-cc" onclick="copy('cc')">
+        <div class="tag">CC</div><div class="clabel">Capitalized Case</div>
+        <div class="preview" id="p-cc">Your Text Will Appear Here</div>
+        <div class="copy-hint"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="5" width="8" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h7"/></svg>copy</div>
+        <div class="copied-label">Copied!</div><div class="accent-bar"></div>
+      </div>
+      <div class="case-card" id="c-ac" onclick="copy('ac')">
+        <div class="tag">aC</div><div class="clabel">aLtErNaTiNg cAsE</div>
+        <div class="preview" id="p-ac">yOuR tExT wIlL aPpEaR hErE</div>
+        <div class="copy-hint"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="5" width="8" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h7"/></svg>copy</div>
+        <div class="copied-label">Copied!</div><div class="accent-bar"></div>
+      </div>
+      <div class="case-card" id="c-tc" onclick="copy('tc')">
+        <div class="tag">TC</div><div class="clabel">Title Case</div>
+        <div class="preview" id="p-tc">Your Text Will Appear Here</div>
+        <div class="copy-hint"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="5" width="8" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h7"/></svg>copy</div>
+        <div class="copied-label">Copied!</div><div class="accent-bar"></div>
+      </div>
+      <div class="case-card" id="c-ic" onclick="copy('ic')">
+        <div class="tag">iC</div><div class="clabel">iNvErSe CaSe</div>
+        <div class="preview" id="p-ic">yOUR tEXT wILL aPPEAR hERE</div>
+        <div class="copy-hint"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="5" width="8" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 011-1h7"/></svg>copy</div>
+        <div class="copied-label">Copied!</div><div class="accent-bar"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">raw<span>case</span>convert</div>
+      <div class="footer-badges">
+        <div class="badge">Free</div>
+        <div class="badge">No signup</div>
+        <div class="badge">Instant</div>
+      </div>
+      <div class="footer-links">
+        <span class="footer-link">Privacy</span>
+        <span class="footer-link">Terms</span>
+        <span class="footer-link">Contact</span>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 rawcaseconvert — All rights reserved. Built with Poppins.</div>
+  </footer>
+
+</div>
+
+<script>
+const MINOR=new Set(['a','an','the','and','but','or','nor','for','so','yet','at','by','in','of','on','to','up','as','is','it']);
+const defaults={sc:'Your text will appear here',lc:'your text will appear here',uc:'YOUR TEXT WILL APPEAR HERE',cc:'Your Text Will Appear Here',ac:'yOuR tExT wIlL aPpEaR hErE',tc:'Your Text Will Appear Here',ic:'yOUR tEXT wILL aPPEAR hERE'};
+
+function convert(t){
+  return{
+    sc:t.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g,c=>c.toUpperCase()),
+    lc:t.toLowerCase(),
+    uc:t.toUpperCase(),
+    cc:t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase()),
+    ac:(()=>{let i=0;return t.split('').map(c=>/[a-z]/i.test(c)?(i++%2===0?c.toLowerCase():c.toUpperCase()):c).join('')})(),
+    tc:t.toLowerCase().split(' ').map((w,i)=>i&&MINOR.has(w)?w:w.charAt(0).toUpperCase()+w.slice(1)).join(' '),
+    ic:t.split('').map(c=>c===c.toUpperCase()?c.toLowerCase():c.toUpperCase()).join('')
+  };
+}
+
+function update(t){
+  const empty=!t.trim();
+  const r=empty?defaults:convert(t);
+  for(const k of Object.keys(defaults)){
+    const el=document.getElementById('p-'+k);
+    el.textContent=r[k];
+    el.style.opacity=empty?.35:1;
+  }
+  const st=document.getElementById('stats');
+  if(!empty){
+    st.style.display='flex';
+    document.getElementById('sc').textContent=t.length;
+    document.getElementById('sw').textContent=t.trim().split(/\s+/).length;
+    document.getElementById('ss').textContent=t.split('\n').length;
+  } else { st.style.display='none'; }
+}
+
+function copy(k){
+  const t=document.getElementById('txt').value;
+  if(!t.trim())return;
+  const r=convert(t)[k];
+  navigator.clipboard.writeText(r).then(()=>{
+    const card=document.getElementById('c-'+k);
+    card.classList.add('copied');
+    setTimeout(()=>card.classList.remove('copied'),1800);
+  });
+}
+
+document.getElementById('txt').addEventListener('input',e=>update(e.target.value));
+update('');
+</script>
